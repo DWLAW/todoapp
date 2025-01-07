@@ -9,13 +9,13 @@ import { deleteList } from '@/api/listData';
 
 function ListCard({ listObj, onUpdate }) {
   const deleteThisList = () => {
-    if (window.confirm(`Delete ${listObj.task}?`)) {
+    if (window.confirm(`Delete ${listObj.firebaseKey}?`)) {
       deleteList(listObj.firebaseKey).then(() => onUpdate());
     }
   };
 
   return (
-    <Card style={{ width: '18rem', margin: '10px' }}>
+    <Card style={{ width: '18rem', margin: '10px' }} className="card">
       <Card.Body>
         <Card.Title>{listObj.task}</Card.Title>
 
