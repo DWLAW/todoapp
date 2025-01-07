@@ -2,9 +2,9 @@ import { clientCredentials } from '../utils/client';
 
 const endpoint = clientCredentials.databaseURL;
 
-const getList = () =>
+const getLists = (uid) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/list.json`, {
+    fetch(`${endpoint}/list.json?orderBy="uid"&equalTo="${uid}"`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -58,7 +58,7 @@ const updateList = (payload) =>
 
 const deleteList = (firebaseKey) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/list/${firebaseKey}`, {
+    fetch(`${endpoint}/list/${firebaseKey}.json`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -68,4 +68,4 @@ const deleteList = (firebaseKey) =>
       .catch(reject);
   });
 
-export { getList, createList, updateList, getSingleList, deleteList };
+export { getLists, createList, updateList, getSingleList, deleteList };
